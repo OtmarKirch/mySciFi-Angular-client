@@ -1,27 +1,17 @@
-# MySciFiAngularClient
+# MyFlixAngularClient
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
+## Description
+This app provides a frontend for the MyFlix API. It allows users to sign up, log in, view information about movies, and add movies to their list of favorites. The server-side code and documentation for this app can be found in this [repository]("https://github.com/OtmarKirch/sci-fi-app"). A frontend has already been written in React, which you can find [here]("https://github.com/OtmarKirch/MySciFi-client"). This project is a rewrite of the frontend in Angular.
 
-## Development server
+## Current State
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The app is currently in development. The following features have been implemented:
+- The endpoints for the API
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Key Features
+At the end of development, the app will have the following features:
+- Your app should display a welcome view where users will be able to either log in or register an account.
+- Once authenticated, the user should now view all movies.
+- Upon clicking on a particular movie, users will be taken to a single movie view, where additional movie details will be displayed. The single movie view will contain the following additional features:
+  - A button that when clicked takes a user to the ​director view,​ where details about the director of that particular movie will be displayed.
+  - A button that when clicked takes a user to the ​genre view,​ where details about that particular genre of the movie will be displayed.
