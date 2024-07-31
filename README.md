@@ -7,6 +7,8 @@ This app provides a frontend for the MyFlix API. It allows users to sign up, log
 
 The app is currently in development. The following features have been implemented:
 - The endpoints for the API
+- Basic starting view
+- User registration
 
 ## Key Features
 At the end of development, the app will have the following features:
