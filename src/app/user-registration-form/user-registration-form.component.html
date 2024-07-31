@@ -7,8 +7,18 @@
             <mat-form-field>
                 <input
                     matInput
+                    [(ngModel)]="userData.name"
+                    placeholder="Name - at least 5 chars"
+                    type="text"
+                    name="Name"
+                    required
+                >
+            </mat-form-field>
+            <mat-form-field>
+                <input
+                    matInput
                     [(ngModel)]="userData.Username"
-                    placeholder="Username"
+                    placeholder="Username - at least 10 chars"
                     type="text"
                     name="Username"
                     required
@@ -27,14 +37,14 @@
             <mat-form-field>
                 <input
                     matInput
-                    [(ngModel)]="userData.Email"
+                    [(ngModel)]="userData.email"
                     placeholder="Email"
                     type="email"
                     name="Email"
                     required
                 >
             </mat-form-field>
-            <mat-form-field>
+            <!-- <mat-form-field>
                 <input
                     matInput
                     [(ngModel)]="userData.Birthday"
@@ -43,7 +53,7 @@
                     name="Birthday"
                     required
                 >
-            </mat-form-field>
+            </mat-form-field> -->
         </form>
     </mat-card-content>
     <mat-card-actions>
