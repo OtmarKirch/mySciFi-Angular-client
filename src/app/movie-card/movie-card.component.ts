@@ -1,7 +1,8 @@
 // src/app/movie-card/movie-card.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service'
-import { MatCardModule } from '@angular/material/card';
+
+
 
 @Component({
   selector: 'app-movie-card',
@@ -9,6 +10,8 @@ import { MatCardModule } from '@angular/material/card';
   styleUrls: ['./movie-card.component.scss']
 })
 export class MovieCardComponent {
+
+  
   movies: any[] = [];
   constructor(public fetchApiData: FetchApiDataService) { }
 
