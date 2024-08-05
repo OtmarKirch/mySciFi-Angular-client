@@ -39,7 +39,7 @@
                 (click)="addFavoriteMovie(movie.title)"
                 color="primary"
             >
-            <mat-icon>favorite_border</mat-icon>
+            <mat-icon aria-hidden="false">{{ movie.favorite ? 'favorite' : 'favorite_border' }}</mat-icon>
             </button>
         </mat-card-actions>
     </mat-card>
