@@ -1,5 +1,8 @@
 // src/app/movie-card/movie-card.component.ts
 import { Component, OnInit } from '@angular/core';
+import { UserProfileComponent } from '../user-profile/user-profile.component';
+import { MatDialog } from '@angular/material/dialog';
+
 import { FetchApiDataService } from '../fetch-api-data.service'
 
 
@@ -13,7 +16,10 @@ export class MovieCardComponent {
 
   
   movies: any[] = [];
-  constructor(public fetchApiData: FetchApiDataService) { }
+  constructor(
+    public fetchApiData: FetchApiDataService,
+    public dialog: MatDialog
+  ) { }
 
 ngOnInit(): void {
   this.getMovies();
@@ -26,4 +32,10 @@ getMovies(): void {
       return this.movies;
     });
   }
+
+  openUserProfileDialog(): void {
+    this.dialog.open(UserProfileComponent, {
+      width: '280px'
+  })};
+
 }

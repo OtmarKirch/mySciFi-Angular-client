@@ -122,16 +122,35 @@ export class FetchApiDataService {
 
   // Update password
   public updatePassword(userDetails: any): Observable<any> {
+    console.log("function updatePassword called");
     const token = localStorage.getItem('token');
-    return this.http.put(apiUrl + 'users/newpassword', userDetails, {
+    console.log(token);
+    const changePasswordUrl = apiUrl + 'users/newpassword';
+    console.log("Url: " +changePasswordUrl);
+    console.log(userDetails);
+    return this.http.put(changePasswordUrl, userDetails, {
+      responseType: "text",
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
         })
     }).pipe(
-      map((response: any) => this.extractResponseData(response)),
+      map((response: string) => {
+        // Process the string response if needed
+        return response;
+      }),
       catchError(this.handleError)
     );
+  }
+
+  update2Password(newPassword: string): Observable<any> {
+    return this.http.put('your-api-endpoint', { password: newPassword }, { responseType: 'text' })
+      .pipe(
+        map((response: string) => {
+          // Process the string response if needed
+          return response;
+        })
+      );
   }
 
   // Delete user

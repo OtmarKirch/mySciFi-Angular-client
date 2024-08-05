@@ -1,0 +1,81 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Update your details</mat-card-title>
+        <p>You can update one or more details</p>
+    </mat-card-header>
+    <mat-card-content>
+        <form>
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input
+                    matInput
+                    [(ngModel)]="userData.name"
+                    [placeholder]="userDetails.name"
+                    type="text"
+                    name="Name"
+                    required
+                >
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input
+                    matInput
+                    [(ngModel)]="userData.Username"
+                    [placeholder]="userDetails.Username"
+                    type="text"
+                    name="Username"
+                    required
+                >
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input
+                    matInput
+                    [(ngModel)]="userData.email"
+                    [placeholder]="userDetails.email"
+                    type="email"
+                    name="Email"
+                    required
+                >
+            </mat-form-field>
+            
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button
+            mat-raised-button
+            (click)="changeUserDetails()"
+            class="button-profile"
+        >
+            Update details
+        </button>
+    </mat-card-actions>
+    <mat-card-header>
+        <mat-card-title>Update your password</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form>
+            <mat-form-field>
+
+                <mat-label>Password</mat-label>
+                <input
+                    matInput
+                    [(ngModel)]="userPassword.Password"
+                    placeholder="Password"
+                    type="password"
+                    name="Password"
+                    required
+                >
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button
+            mat-raised-button
+            (click)="changeUserPassword()"
+            class="button-profile"
+        >
+            Update password
+        </button>
+    </mat-card-actions>
+</mat-card>

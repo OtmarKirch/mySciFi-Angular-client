@@ -43,6 +43,7 @@ export class UserLoginFormComponent implements OnInit{
         duration: 2000
       });
       localStorage.setItem('token', result.token);
+      sessionStorage.setItem("userDetails", JSON.stringify(result.user));
       this.router.navigate(['movies']);
     }, (result) => {
       console.log(result);
