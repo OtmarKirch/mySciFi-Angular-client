@@ -122,12 +122,8 @@ export class FetchApiDataService {
 
   // Update password
   public updatePassword(userDetails: any): Observable<any> {
-    console.log("function updatePassword called");
     const token = localStorage.getItem('token');
-    console.log(token);
     const changePasswordUrl = apiUrl + 'users/newpassword';
-    console.log("Url: " +changePasswordUrl);
-    console.log(userDetails);
     return this.http.put(changePasswordUrl, userDetails, {
       responseType: "text",
       headers: new HttpHeaders(
@@ -136,27 +132,17 @@ export class FetchApiDataService {
         })
     }).pipe(
       map((response: string) => {
-        // Process the string response if needed
         return response;
       }),
       catchError(this.handleError)
     );
   }
-
-  update2Password(newPassword: string): Observable<any> {
-    return this.http.put('your-api-endpoint', { password: newPassword }, { responseType: 'text' })
-      .pipe(
-        map((response: string) => {
-          // Process the string response if needed
-          return response;
-        })
-      );
-  }
+ 
 
   // Delete user
   public deleteUser(userDetails: any): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.delete(apiUrl + 'users/delete?Username=' + userDetails.Username,{
+    return this.http.delete(apiUrl + 'users/delete?Username=' + userDetails.Username, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
