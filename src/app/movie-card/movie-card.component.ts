@@ -47,8 +47,10 @@ export class MovieCardComponent {
   }
 
   addFavoriteMovie(movieTitle: string): void {
-    this.fetchApiData.addFavorite(movieTitle).subscribe((resp: any) => {
-      console.log(resp);
+    console.log(movieTitle);
+    const reqData = {"favoriteMovie": movieTitle};
+    this.fetchApiData.addFavorite(reqData).subscribe((resp: any) => {
+      console.log(resp.favoriteMovies);
       sessionStorage.setItem("userDetails", JSON.stringify(resp));
       alert('Added to favorites!');
     });
