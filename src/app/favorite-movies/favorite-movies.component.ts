@@ -103,6 +103,7 @@ export class FavoriteMoviesComponent {
     this.getMovies();
   }
 
+  //gets all movies from the database
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -112,6 +113,7 @@ export class FavoriteMoviesComponent {
     });
   }
 
+  //get movie ids of favorite movies from user details
   getFavoriteMoviesUser(): object {
     let userDetails = JSON.parse(sessionStorage.getItem('userDetails')!);
     this.favoriteMovies = userDetails.favoriteMovies;
@@ -134,8 +136,6 @@ export class FavoriteMoviesComponent {
   }
 
   openMovieDetailsDialog(kindOfDetails: string, movie: any): void {
-    console.log(kindOfDetails);
-    console.log(movie);
     this.dialog.open(DetailsViewComponent, {
       data: {
         kindOfDetails,
@@ -145,10 +145,8 @@ export class FavoriteMoviesComponent {
     });
   }
 
+  //adds or removes a movie from the list of favorite movies of the user
   addDeleteFavoriteMovie(movie: any): void {
-    console.log(movie);
-    console.log(movie.title);
-
     const icon = document.getElementById(`${movie._id}-icon`);
     const reqData = { favoriteMovie: movie.title };
     if (!movie.favorite) {
