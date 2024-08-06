@@ -1,0 +1,35 @@
+<div style="display: flex; justify-content: center;">
+  <button
+    mat-raised-button
+    (click)="openUserProfileDialog()"
+    style="margin: 10px"
+    color="primary"
+  >
+    <mat-icon aria-hidden="false">person</mat-icon> Profile
+  </button>
+
+  <button
+    mat-raised-button
+    (click)="openMovieOverview()"
+    style="margin: 10px"
+    color="primary"
+  >
+    <mat-icon aria-hidden="false">camera_roll</mat-icon>Movie Overview
+  </button>
+  <button
+    mat-raised-button
+    (click)="openUsersFavorites()"
+    style="margin: 10px"
+    color="primary"
+  >
+    <mat-icon aria-hidden="false">favorite_border</mat-icon>Your Favorites
+  </button>
+  <button
+    mat-raised-button
+    (click)="logoutUser()"
+    style="margin: 10px"
+    color=""
+  >
+    <mat-icon aria-hidden="false">logout</mat-icon>Logout
+  </button>
+</div>

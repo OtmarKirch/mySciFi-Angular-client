@@ -25,10 +25,13 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DetailsViewComponent } from './details-view/details-view.component';
+import { FavoriteMoviesComponent } from './favorite-movies/favorite-movies.component';
+import { MenuButtonsComponent } from './menu-buttons/menu-buttons.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
+  { path: 'favorites', component: FavoriteMoviesComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' }
 ];
 
@@ -41,7 +44,9 @@ const appRoutes: Routes = [
     MovieCardComponent,
     WelcomePageComponent,
     UserProfileComponent,
-    DetailsViewComponent
+    DetailsViewComponent,
+    FavoriteMoviesComponent,
+    MenuButtonsComponent
 
   ],
   imports: [

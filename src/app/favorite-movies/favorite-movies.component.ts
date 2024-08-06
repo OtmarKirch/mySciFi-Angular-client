@@ -1,4 +1,3 @@
-// src/app/movie-card/movie-card.component.ts
 import { Component, OnInit } from '@angular/core';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -8,13 +7,14 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { DetailsViewComponent } from '../details-view/details-view.component';
 
 @Component({
-  selector: 'app-movie-card',
-  templateUrl: './movie-card.component.html',
-  styleUrls: ['./movie-card.component.scss'],
+  selector: 'app-favorite-movies',
+  templateUrl: './favorite-movies.component.html',
+  styleUrl: './favorite-movies.component.scss'
 })
-export class MovieCardComponent {
+export class FavoriteMoviesComponent {
   movies: any[] = [];
   favoriteMovies: any[] = [];
+  favoriteMoviesList: any[] = [];
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
@@ -31,10 +31,12 @@ export class MovieCardComponent {
       console.log(this.movies);
     this.getFavoriteMoviesUser();
     this.tagFavoriteMovies();
+    this.setFavoriteMoviesList();
       return this.movies;
     });
   }
 
+  //get movie ids of favorite movies from user details
   getFavoriteMoviesUser(): object {
     let userDetails = JSON.parse(sessionStorage.getItem('userDetails')!);
     this.favoriteMovies = userDetails.favoriteMovies;
@@ -44,7 +46,6 @@ export class MovieCardComponent {
 
   //determines for each movie whether it is a favorite of the user
   tagFavoriteMovies(): void {
-    //console.log(this.movies);
     this.movies.forEach((movie) => {
       this.favoriteMovies.forEach((favoriteMovie) => {
         if (movie._id === favoriteMovie) {
@@ -52,6 +53,11 @@ export class MovieCardComponent {
         }
       });
     });
+  }
+
+  setFavoriteMoviesList(): void {
+    this.favoriteMoviesList = this.movies.filter((movie) => movie.favorite);
+    console.log(this.favoriteMovies);
   }
 
   openMovieDetailsDialog(kindOfDetails: string, movie: any): void {
@@ -76,7 +82,7 @@ export class MovieCardComponent {
       console.log(resp.favoriteMovies);
       sessionStorage.setItem('userDetails', JSON.stringify(resp));
       this.tagFavoriteMovies();
-      alert(movie.title + ' was added to your favorites!');
+      alert('Added to favorites!');
     });
     } else if (movie.favorite) {
       console.log("movie is on the list of favorites");
@@ -84,7 +90,7 @@ export class MovieCardComponent {
         console.log(resp.favoriteMovies);
         sessionStorage.setItem('userDetails', JSON.stringify(resp));
         this.tagFavoriteMovies();
-        alert(movie.title + ' was remove from your favorites!');
+        alert('Removed from favorites!');
       });
 
     }
@@ -96,7 +102,7 @@ export class MovieCardComponent {
     });
   }
 
-  openUsersFavorites(): void {
-    this.router.navigate(['favorites']);
+  openMovieOverview(): void {
+    this.router.navigate(['movies']);
   }
 }

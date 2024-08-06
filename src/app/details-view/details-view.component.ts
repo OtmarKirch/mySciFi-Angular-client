@@ -48,4 +48,8 @@ export class DetailsViewComponent {
         break;
     }
   }
+
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
 }

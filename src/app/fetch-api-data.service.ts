@@ -170,7 +170,8 @@ export class FetchApiDataService {
   // Remove movie from favorites
   public removeFavorite(userDetails: any): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.delete(apiUrl + 'users/favoritemovie?favoriteMovie=' + userDetails.favoriteMovie, {
+    return this.http.delete(apiUrl + 'users/favoritemovie/', {
+      body: userDetails,
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
