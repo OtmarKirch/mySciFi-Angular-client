@@ -29,7 +29,6 @@ export class MovieCardComponent {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
       console.log(this.movies);
-    this.getFavoriteMoviesUser();
     this.tagFavoriteMovies();
       return this.movies;
     });
@@ -44,8 +43,9 @@ export class MovieCardComponent {
 
   //determines for each movie whether it is a favorite of the user
   tagFavoriteMovies(): void {
-    //console.log(this.movies);
+    this.getFavoriteMoviesUser();
     this.movies.forEach((movie) => {
+        movie.favorite = false;
       this.favoriteMovies.forEach((favoriteMovie) => {
         if (movie._id === favoriteMovie) {
           movie.favorite = true;
@@ -69,34 +69,27 @@ export class MovieCardComponent {
   addDeleteFavoriteMovie(movie: any): void {
     console.log(movie);
     console.log(movie.title);
+
+    const icon = document.getElementById(`${movie._id}-icon`);
     const reqData = { favoriteMovie: movie.title };
     if (!movie.favorite) {
-    
+      icon?.setAttribute("fontIcon", "favorite");
     this.fetchApiData.addFavorite(reqData).subscribe((resp: any) => {
       console.log(resp.favoriteMovies);
       sessionStorage.setItem('userDetails', JSON.stringify(resp));
       this.tagFavoriteMovies();
-      alert(movie.title + ' was added to your favorites!');
     });
     } else if (movie.favorite) {
       console.log("movie is on the list of favorites");
       this.fetchApiData.removeFavorite(reqData).subscribe((resp: any) => {
+        icon?.setAttribute("fontIcon", "favorite_border");
         console.log(resp.favoriteMovies);
         sessionStorage.setItem('userDetails', JSON.stringify(resp));
         this.tagFavoriteMovies();
-        alert(movie.title + ' was remove from your favorites!');
       });
 
     }
   }
 
-  openUserProfileDialog(): void {
-    this.dialog.open(UserProfileComponent, {
-      width: '280px',
-    });
-  }
-
-  openUsersFavorites(): void {
-    this.router.navigate(['favorites']);
-  }
+  
 }

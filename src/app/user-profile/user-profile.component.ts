@@ -92,7 +92,7 @@ export class UserProfileComponent {
         duration: 2000
       });
     }, (result) => {
-      console.log("change password failed. Error meassage: " + result);
+      console.log("Change password failed. Error meassage: " + result);
       this.snackBar.open(result, 'OK', {
         duration: 2000
       });

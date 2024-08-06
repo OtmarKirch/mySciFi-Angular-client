@@ -21,6 +21,84 @@ export class FavoriteMoviesComponent {
     public router: Router
   ) {}
 
+  // ngOnInit(): void {
+  //   this.getMovies();
+  // }
+
+  // getMovies(): void {
+  //   this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+  //     this.movies = resp;
+  //     console.log(this.movies);
+  //   this.tagFavoriteMovies();
+  //   this.setFavoriteMoviesList();
+  //     return this.movies;
+  //   });
+  // }
+
+  // //get movie ids of favorite movies from user details
+  // getFavoriteMoviesUser(): object {
+  //   let userDetails = JSON.parse(sessionStorage.getItem('userDetails')!);
+  //   this.favoriteMovies = userDetails.favoriteMovies;
+  //   console.log(this.favoriteMovies);
+  //   return this.favoriteMovies;
+  // }
+
+  // //determines for each movie whether it is a favorite of the user
+  // tagFavoriteMovies(): void {
+  //   this.getFavoriteMoviesUser();
+  //   this.movies.forEach((movie) => {
+  //     this.favoriteMovies.forEach((favoriteMovie) => {
+  //       if (movie._id === favoriteMovie) {
+  //         movie.favorite = true;
+  //       }
+  //     });
+  //   });
+  // }
+
+  setFavoriteMoviesList(): void {
+    this.favoriteMoviesList = this.movies.filter((movie) => movie.favorite);
+    console.log(this.favoriteMovies)
+    console.log(this.favoriteMoviesList);
+  }
+
+  // openMovieDetailsDialog(kindOfDetails: string, movie: any): void {
+  //   console.log(kindOfDetails);
+  //   console.log(movie);
+  //   this.dialog.open(DetailsViewComponent, {
+  //     data: {
+  //       kindOfDetails,
+  //       movie,
+  //     },
+  //     width: '500px',
+  //   });
+  // }
+
+  // addDeleteFavoriteMovie(movie: any): void {
+  //   console.log(movie);
+  //   console.log(movie.title);
+  //   const reqData = { favoriteMovie: movie.title };
+  //   if (!movie.favorite) {
+    
+  //   this.fetchApiData.addFavorite(reqData).subscribe((resp: any) => {
+  //     console.log(resp.favoriteMovies);
+  //     sessionStorage.setItem('userDetails', JSON.stringify(resp));
+  //     this.tagFavoriteMovies();
+  //     alert('Added to favorites!');
+  //   });
+  //   } else if (movie.favorite) {
+  //     console.log("movie is on the list of favorites");
+  //     this.fetchApiData.removeFavorite(reqData).subscribe((resp: any) => {
+  //       console.log(resp.favoriteMovies);
+  //       sessionStorage.setItem('userDetails', JSON.stringify(resp));
+  //       this.tagFavoriteMovies();
+  //       alert('Removed from favorites!');
+  //     });
+
+  //   }
+  // }
+
+  //new code
+
   ngOnInit(): void {
     this.getMovies();
   }
@@ -29,14 +107,11 @@ export class FavoriteMoviesComponent {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
       console.log(this.movies);
-    this.getFavoriteMoviesUser();
     this.tagFavoriteMovies();
-    this.setFavoriteMoviesList();
       return this.movies;
     });
   }
 
-  //get movie ids of favorite movies from user details
   getFavoriteMoviesUser(): object {
     let userDetails = JSON.parse(sessionStorage.getItem('userDetails')!);
     this.favoriteMovies = userDetails.favoriteMovies;
@@ -46,18 +121,16 @@ export class FavoriteMoviesComponent {
 
   //determines for each movie whether it is a favorite of the user
   tagFavoriteMovies(): void {
+    this.getFavoriteMoviesUser();
     this.movies.forEach((movie) => {
+      movie.favorite = false;
       this.favoriteMovies.forEach((favoriteMovie) => {
         if (movie._id === favoriteMovie) {
           movie.favorite = true;
         }
       });
     });
-  }
-
-  setFavoriteMoviesList(): void {
-    this.favoriteMoviesList = this.movies.filter((movie) => movie.favorite);
-    console.log(this.favoriteMovies);
+    this.setFavoriteMoviesList();
   }
 
   openMovieDetailsDialog(kindOfDetails: string, movie: any): void {
@@ -75,34 +148,26 @@ export class FavoriteMoviesComponent {
   addDeleteFavoriteMovie(movie: any): void {
     console.log(movie);
     console.log(movie.title);
+
+    const icon = document.getElementById(`${movie._id}-icon`);
     const reqData = { favoriteMovie: movie.title };
     if (!movie.favorite) {
-    
+      icon?.setAttribute("fontIcon", "favorite");
     this.fetchApiData.addFavorite(reqData).subscribe((resp: any) => {
       console.log(resp.favoriteMovies);
       sessionStorage.setItem('userDetails', JSON.stringify(resp));
       this.tagFavoriteMovies();
-      alert('Added to favorites!');
     });
     } else if (movie.favorite) {
       console.log("movie is on the list of favorites");
       this.fetchApiData.removeFavorite(reqData).subscribe((resp: any) => {
+        icon?.setAttribute("fontIcon", "favorite_border");
         console.log(resp.favoriteMovies);
         sessionStorage.setItem('userDetails', JSON.stringify(resp));
         this.tagFavoriteMovies();
-        alert('Removed from favorites!');
       });
 
     }
   }
 
-  openUserProfileDialog(): void {
-    this.dialog.open(UserProfileComponent, {
-      width: '280px',
-    });
-  }
-
-  openMovieOverview(): void {
-    this.router.navigate(['movies']);
-  }
 }
