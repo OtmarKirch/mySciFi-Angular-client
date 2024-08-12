@@ -5,10 +5,16 @@ This app provides a frontend for the MyFlix API. It allows users to sign up, log
 
 ## Current State
 
-The app is currently in development. The following features have been implemented:
+The development of the app is finished. The following features have been implemented:
 - The endpoints for the API
 - Basic starting view
 - User registration
+- User login
+- Viewing all movies
+- List of favorite movies
+- Viewing details of a single movie, the genre or director
+- Changing user details
+- Deleting user account
 
 ## Key Features
 At the end of development, the app will have the following features:

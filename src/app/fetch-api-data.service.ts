@@ -10,7 +10,12 @@ const apiUrl = 'https://quiet-bastion-19832-9b36523e0b42.herokuapp.com/';
 })
 
 
+
 export class FetchApiDataService {
+  /**
+   * The FetchApiDataService class is a service that provides methods to make API calls to the server-side.
+   * It contains methods for user registration, user login, getting all movies, getting one movie, getting genre of movie, getting director of movie, updating username, updating user details, updating password, deleting user, adding movie to favorites, and removing movie from favorites.
+   */
   // Inject the HttpClient module to the constructor params
   // This will provide HttpClient to the entire class, making it available via this.http
   constructor(private http: HttpClient) {
@@ -42,7 +47,6 @@ export class FetchApiDataService {
 
   /**
    * Get all movies
-   * @param userDetails - token
    * @returns {Observable<any>} list of all movies
    */
   public getAllMovies(): Observable<any> {
@@ -212,7 +216,6 @@ export class FetchApiDataService {
     );
   }
 
-  // Remove movie from favorites
   /**
    * Remove movie from favorites
    * @param userDetails
@@ -244,5 +247,3 @@ export class FetchApiDataService {
       'Something bad happened; please try again later.');
   }
 }
-
-

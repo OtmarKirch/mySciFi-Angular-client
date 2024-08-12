@@ -11,10 +11,14 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrl: './details-view.component.scss'
 })
 export class DetailsViewComponent {
+  
   title: string = '';
   name: string = '';
   description: string = '';
 
+  /**
+   * The DetailsViewComponent class contains methods to extract data from the movie object and display it in the dialog box.
+   */
   constructor(@Inject(MAT_DIALOG_DATA)
   public data: {
     kindOfDetails: string,
@@ -28,6 +32,9 @@ export class DetailsViewComponent {
     this.extractData();
   }
 
+  /**
+   * Extracts data from the movie object and assigns it to the title, name, and description properties.
+   */
   extractData(): void {
     const movieData = this.data.movie;
     this.title = this.data.movie.title;
@@ -49,6 +56,9 @@ export class DetailsViewComponent {
     }
   }
 
+  /**
+   * Closes the dialog box.
+   */
   closeDialog(): void {
     this.dialogRef.close();
   }
