@@ -8,6 +8,13 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './welcome-page.component.html',
   styleUrls: ['./welcome-page.component.scss']
 })
+
+  /**
+   * The WelcomePageComponent class contains two methods 
+   * openUserRegistrationDialog() and openUserLoginDialog() 
+   * which are accessed by button click on the welcome page. 
+   * They open the UserRegistrationFormComponent and UserLoginFormComponent components respectively.
+   */
 export class WelcomePageComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
   ngOnInit(): void {
